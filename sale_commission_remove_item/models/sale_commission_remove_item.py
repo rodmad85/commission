@@ -24,6 +24,7 @@ class SaleCommissionRemoveItem(models.Model):
         string="Sale Order Field",
         domain=[("model", "=", "sale.order")],
         required=True,
+        ondelete="cascade",
         help="Field of the sales order form used to evaluate the exclusion. "
         "All fields of the sale order form are available for selection.",
     )
