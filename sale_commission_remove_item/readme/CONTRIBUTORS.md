@@ -1,0 +1,2 @@
+- Rodrigo A. Madureira <https://github.com/rodmad85>
+- [Madooit](https://madooit.com)

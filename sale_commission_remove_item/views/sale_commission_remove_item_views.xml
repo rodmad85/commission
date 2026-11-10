@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sale_commission_remove_item_form" model="ir.ui.view">
+        <field name="name">sale.commission.remove.item.form</field>
+        <field name="model">sale.commission.remove.item</field>
+        <field name="arch" type="xml">
+            <form string="Sale Commission Remove Item">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="product_category_id" />
+                        <field name="field_id" />
+                        <field name="field_type" readonly="1" />
+                        <field name="value" />
+                        <field name="active" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sale_commission_remove_item_list" model="ir.ui.view">
+        <field name="name">sale.commission.remove.item.list</field>
+        <field name="model">sale.commission.remove.item</field>
+        <field name="arch" type="xml">
+            <list string="Sale Commission Remove Items">
+                <field name="name" />
+                <field name="product_category_id" />
+                <field name="field_id" />
+                <field name="field_type" />
+                <field name="value" />
+                <field name="active" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sale_commission_remove_item_search" model="ir.ui.view">
+        <field name="name">sale.commission.remove.item.search</field>
+        <field name="model">sale.commission.remove.item</field>
+        <field name="arch" type="xml">
+            <search string="Sale Commission Remove Items">
+                <field name="name" />
+                <field name="product_category_id" />
+                <field name="field_id" />
+                <field name="value" />
+                <filter
+                    name="active"
+                    string="Active"
+                    domain="[('active', '=', True)]"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_sale_commission_remove_item" model="ir.actions.act_window">
+        <field name="name">Sale Commission Remove Items</field>
+        <field name="res_model">sale.commission.remove.item</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p>
+                Define rules to remove the commission from a sale order line
+                when the product category and a sale order field value match.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_sale_commission_remove_item"
+        name="Remove Commission Items"
+        parent="commission_oca.menu_commission_management"
+        action="action_sale_commission_remove_item"
+        groups="sales_team.group_sale_manager"
+        sequence="20"
+    />
+
+    <record id="view_order_line_tree_inherit_commission_removed" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.inherit.commission.removed</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="price_subtotal" position="after">
+                <field name="commission_removed" optional="hide" />
+            </field>
+        </field>
+    </record>
+</odoo>
